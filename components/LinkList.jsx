@@ -9,22 +9,21 @@ export const LinkList = () => {
       <h3>Inner links</h3>
       <ul>
         <li>
-          <button onClick={() => router.push("/?a=b")}>/?a=b</button>
+          <button onClick={() => router.replace("/?a=b")}>/?a=b</button>
         </li>
         <li>
-          {" "}
-          <button onClick={() => router.push("/?c=d")}>/?c=d</button>
+          <button onClick={() => router.replace("/?a=b&c=d")}>/?a=b&c=d</button>
         </li>
         <li>
-          <button onClick={() => router.push("/")}>/</button>
+          <button onClick={() => router.replace("/")}>/</button>
         </li>
       </ul>
       <h3>Outer links</h3>
       <ul>
         <li>
-          <button onClick={() => router.push("https://www.google.com")}>
-            https://www.google.com
-          </button>
+          <Link as="a" href="https://www.google.com" passHref={true}>
+            <button>https://www.google.com</button>
+          </Link>
         </li>
       </ul>
     </div>
