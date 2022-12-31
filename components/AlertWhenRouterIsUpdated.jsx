@@ -5,11 +5,9 @@ export const AlertWhenRouterIsUpdated = () => {
   const router = useRouter();
 
   useEffect(() => {
+    alert("router is updated(or init)");
     console.log("router is updated(or init)", router);
   }, [router]);
-  useEffect(() => {
-    console.log("router.query is updated(or init)", router.query);
-  }, [router.query]);
 
   useEffect(() => {
     window.addEventListener("popstate", (e) => {
