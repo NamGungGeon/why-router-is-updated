@@ -28,7 +28,7 @@ function Home() {
 
 // prevent '/' be static page (running as dynamic page)
 Home.getInitialProps = async ({ req, res }) => {
-  res.setHeader("Cache-Control", "private, no-cache, must-revalidate");
+  res?.setHeader("Cache-Control", "private, no-cache, must-revalidate");
   return {};
 };
 
