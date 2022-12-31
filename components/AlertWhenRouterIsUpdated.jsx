@@ -10,9 +10,9 @@ export const AlertWhenRouterIsUpdated = () => {
   }, [router]);
 
   useEffect(() => {
-    window.addEventListener("popstate", (e) => {
-      console.log("popstate!", e);
-    });
+    const routeChangeStart = (e) => {
+      console.log("routerChangeStart", e);
+    };
   }, []);
 
   return <h1>Currennt path: {router.asPath}</h1>;
