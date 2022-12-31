@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Demo page
 
-## Getting Started
+https://why-router-is-updated.vercel.app/
 
-First, run the development server:
+## How to invoke bug
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1. enter page. (/)
+2. click `/?a=b` button.
+3. click `/?c=d` button.
+4. click `www.google.com(Outer link)` button.
+5. click back button.
+6. bfcache is used. (page is restored without reload data)
+7. but router is updated, and `useEffect(()=> {...}, [router])` is triggered.
+   - page is restored from bfcache, thus rouuter must be not updated. but updated, and effect is executed.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What is problem?
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Phase 7 is unexpected behavior.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+In below situation, router is not updated.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. enter page. (/, /?a=b, /?c=d; anything)
+2. click `www.google.com(Outer link)` button.
+3. click back button.
+4. bfcache is used (page is restored without reload data)
+5. <b>(important)</b> router is not updated .
+    - so `useEffect(()=> {...}, [router])` is not triggered.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+why not-updated here?!
