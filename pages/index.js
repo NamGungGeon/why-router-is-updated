@@ -7,6 +7,9 @@ function Home() {
   useEffect(() => {
     const checkBfcache = (e) => {
       console.log("This page is restored from bfcache?", e.persisted);
+      if (e.persisted) {
+        alert("This page is served from bfcache");
+      }
     };
     window.addEventListener("pageshow", checkBfcache);
     return () => {
