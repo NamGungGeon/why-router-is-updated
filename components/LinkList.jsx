@@ -1,33 +1,30 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 export const LinkList = () => {
+  const router = useRouter();
   return (
     <div>
       <h3>Inner links</h3>
       <ul>
         <li>
-          <Link href="/?a=b">
-            <button>/?a=b</button>
-          </Link>
+          <button onClick={() => router.push("/?a=b")}>/?a=b</button>
         </li>
         <li>
-          <Link href="?c=d">
-            <button>/?c=d</button>
-          </Link>
+          {" "}
+          <button onClick={() => router.push("/?c=d")}>/?c=d</button>
         </li>
         <li>
-          <Link href="/">
-            <button>/</button>
-          </Link>
+          <button onClick={() => router.push("/")}>/</button>
         </li>
       </ul>
       <h3>Outer links</h3>
       <ul>
         <li>
-          <Link href="https://www.google.com">
-            <button>www.google.com (Outer link)</button>
-          </Link>
+          <button onClick={() => router.push("https://www.google.com")}>
+            https://www.google.com
+          </button>
         </li>
       </ul>
     </div>
