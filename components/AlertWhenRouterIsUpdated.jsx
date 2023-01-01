@@ -9,11 +9,5 @@ export const AlertWhenRouterIsUpdated = () => {
     console.log("router is updated(or init)", router);
   }, [router]);
 
-  useEffect(() => {
-    const routeChangeStart = (e) => {
-      console.log("routerChangeStart", e);
-    };
-  }, []);
-
   return <h1>Currennt path: {router.asPath}</h1>;
 };

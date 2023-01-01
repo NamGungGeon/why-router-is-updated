@@ -12,12 +12,6 @@ function Home() {
       }
     };
     window.addEventListener("pageshow", checkBfcache);
-    window.addEventListener("popstate", (e) => {
-      console.log("on popstate", e);
-    });
-    return () => {
-      window.removeEventListener("pageshow", checkBfcache);
-    };
   }, []);
   return (
     <>
